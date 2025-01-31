@@ -30,6 +30,10 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+
+    - name: Build assets
+      run: npm run build
+        
       run: php artisan test --parallel
       
     - name: Execute Larastan
