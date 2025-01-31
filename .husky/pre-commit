@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ./vendor/bin/phpstan --memory-limit=512M
 if [ $? -ne 0 ]; then
     echo "Erro no PHPStan"
