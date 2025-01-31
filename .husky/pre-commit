@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Rodar os testes
-php artisan test --parallel
+php artisan test --without-tty --parallel
 if [ $? -ne 0 ]; then
     echo "Erro nos testes"
     exit 1;
