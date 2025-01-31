@@ -1,11 +1,20 @@
 #!/bin/sh
 
+# Rodar o PHPStan
 ./vendor/bin/phpstan --memory-limit=512M
 if [ $? -ne 0 ]; then
     echo "Erro no PHPStan"
     exit 1;
 fi
 
+# Rodar os testes
+php artisan test --parallel
+if [ $? -ne 0 ]; then
+    echo "Erro nos testes"
+    exit 1;
+fi
+
+# Formatar cada arquivo alterado usando o Pint
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".php\{0,1\}$") || true
 
 for FILE in $STAGED_FILES
